@@ -111,4 +111,5 @@ terraform/.terraform.lock.hcl
 terraform/terraform.tfvars
 terraform/kube_config.yaml
 terraform/*.tfstate
+terraform/*.backup
 ansible/hosts
