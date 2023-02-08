@@ -50,7 +50,7 @@ app.get('/', async (req, res) => {
 
     const posts = await models.Post.findAll();
     //res.render('index', {posts: post, host: os.hostname()});
-    res.render('index', {posts: post});
+    res.render('index', {posts: posts});
 });
 
 models.initDatabase();
