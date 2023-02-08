@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const promBundle = require("express-prom-bundle");
 const config = require('./system-life');
 const middlewares = require('./middleware')
-const os = require('os')
+//const os = require('os')
 
 const metricsMiddleware = promBundle({
     includeMethod: true, 
@@ -28,7 +28,8 @@ app.set('view engine', 'ejs');
 
 
 app.get('/post', (req, res) => {
-    res.render('edit-news', {host: os.hostname()});
+    //res.render('edit-news', {host: os.hostname()});
+    res.render('edit-news');
 });
 
 app.post('/post', (req, res) => {
@@ -40,14 +41,16 @@ app.post('/post', (req, res) => {
 app.get('/post/:id', async (req, res) => {
 
     const post = await models.Post.findByPk(req.params.id);
-    res.render('view-news', {post: post, host: os.hostname()});
+    //res.render('view-news', {post: post, host: os.hostname()});
+    res.render('view-news', {post: post});
 });
 
 
 app.get('/', async (req, res) => {
 
     const posts = await models.Post.findAll();
-    res.render('index', {posts: post, host: os.hostname()});
+    //res.render('index', {posts: post, host: os.hostname()});
+    res.render('index', {posts: post});
 });
 
 models.initDatabase();
