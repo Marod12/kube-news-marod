@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const promBundle = require("express-prom-bundle");
 const config = require('./system-life');
 const middlewares = require('./middleware')
-//const os = require('os')
+const os = require('os')
 
 const metricsMiddleware = promBundle({
     includeMethod: true, 
@@ -57,3 +57,4 @@ models.initDatabase();
 app.listen(8080);
 
 console.log('Aplicação rodando na porta 8080');
+console.log(os.hostname());
