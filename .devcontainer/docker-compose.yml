@@ -5,3 +5,12 @@ services:
       dockerfile: .devcontainer/Dockerfile.dev
     volumes: 
       - .:/app:cached  # para ter mais performance, o normal é .:/app
+
+  prometheus:
+    image: prom/prometheus:v2.49.1
+    ports:
+      - 9090:9090
+    depends_on:
+      - kubenews
+    networks:
+      - kubenews-net
