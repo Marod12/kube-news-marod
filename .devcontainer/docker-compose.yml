@@ -23,5 +23,10 @@ services:
       - 3000:3000
     depends_on:
       - prometheus
+    volumes:
+      - .docker/grafana/grafana.ini:/etc/grafana/grafana.ini
+      - .docker/grafana/provisioning/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
+      - .docker/grafana/provisioning/dashboard.yaml:/etc/grafana/provisioning/dashboards/dashboard.yaml
+      - .docker/grafana/dashboard:/var/lib/grafana/dashboards
     networks:
       - kubenews-net
