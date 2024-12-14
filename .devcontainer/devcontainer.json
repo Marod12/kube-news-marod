@@ -8,5 +8,6 @@
 
   "service": "kubenews",
 
-  "workspaceFolder": "/app"
+  "workspaceFolder": "/app",
+  "postCreateCommand": "npm install --prefix ./src"
 }
