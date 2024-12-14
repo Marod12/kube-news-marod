@@ -1,0 +1,12 @@
+{
+  "name": "Ambiente Dev com Containers",
+
+  "dockerComposeFile": [
+    "../compose.yaml",
+    "docker-compose.yml"
+  ],
+
+  "service": "kubenews",
+
+  "workspaceFolder": "/app"
+}

@@ -12,9 +12,6 @@ services:
 
   kubenews:
     image: marod12/kube-news:v1
-    build:
-      context: ./src
-      dockerfile: ./Dockerfile
     ports:
       - 8080:8080
     depends_on:
