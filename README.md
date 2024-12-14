@@ -13,3 +13,25 @@ DB_USERNAME => Usuário do banco de dados.
 DB_PASSWORD => Senha do usuário do banco de dados.
 
 DB_HOST => Endereço do banco de dados.
+
+### Intrunções para o Dev Containers
+instale a extenção **[Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)** no seu VSCode
+
+`Reopen in Container`
+
+*no terminal incie a aplicação*
+ 
+`cd src`
+`node server.js` ou `npm run start`
+
+>A ***[aplicação](http://localhost:8080)*** fiacara acessível na porta 8080
+
+>O ***[prometheus](http://localhost:9090/targets)*** ficara acessível na porta 9090
+
+
+> O ***[grafana](http://localhost:3000)*** ficara acessível na porta 3000
+
+*credenciais para acessar o grafana*
+
+user: `dev` 
+password: `passDev`
