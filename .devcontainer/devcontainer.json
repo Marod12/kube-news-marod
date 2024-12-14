@@ -9,5 +9,27 @@
   "service": "kubenews",
 
   "workspaceFolder": "/app",
-  "postCreateCommand": "npm install --prefix ./src"
+  "postCreateCommand": "npm install --prefix ./src",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-docker",
+        "wallabyjs.console-ninja",
+        "naumovs.color-highlight",
+        "prisma.prisma-insider",
+        "prisma.prisma",
+        "miguelsolorio.min-theme",
+        "esbenp.prettier-vscode",
+        "yoavbls.pretty-ts-errors",
+        "chrmarti.regex",
+        "humao.rest-client",
+        "miguelsolorio.symbols",
+        "bradlc.vscode-tailwindcss",
+        "redhat.vscode-yaml",
+        "aquasecurityofficial.trivy-vulnerability-scanner",
+        "exiasr.hadolint"
+      ]
+    }
+  }
 }
