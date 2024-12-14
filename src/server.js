@@ -24,30 +24,57 @@ app.use(config.middlewares.healthMid);
 app.use('/', config.routers);
 app.use(express.static('static'));
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 app.set('view engine', 'ejs');
 
 
 app.get('/post', (req, res) => {
-    res.render('edit-news', {host: os.hostname()});
+    res.render('edit-news', {post: {title: "", content: "", summary: ""}, valido: true, host: os.hostname()});
 });
 
-app.post('/post', (req, res) => {
+app.post('/post', async (req, res) => {
 
-    models.Post.create({title: req.body.title, content: req.body.description, summary: req.body.resumo, publishDate: Date.now()});
-    res.redirect('/');
+    let valid = true;
+
+    if ((req.body.title.length !== 0 && req.body.title.length < 30) && 
+        (req.body.resumo.length !== 0 && req.body.resumo.length < 50) &&
+        (req.body.description.length !== 0 && req.body.description.length < 2000)) {
+        valid = true;
+    } else {
+        valid = false;
+    }
+
+    if (valid) {
+        await models.Post.create({title: req.body.title, content: req.body.description, summary: req.body.resumo, publishDate: Date.now()});
+        res.redirect('/');
+    } else {
+        res.render('edit-news', {post: {title: req.body.title, content: req.body.description, summary: req.body.resumo}, valido: false, host: os.hostname()});
+    }
+    
+});
+
+app.post('/api/post', async (req, res) => {
+
+    console.log(req.body.artigos)
+    for(const item of req.body.artigos) {
+
+        await models.Post.create({title: item.title, content: item.description, summary: item.resumo, publishDate: Date.now()});
+    }
+
+    // models.Post.create({title: req.body.title, content: req.body.description, summary: req.body.resumo, publishDate: Date.now()});
+    res.json(req.body.artigos)
 });
 
 app.get('/post/:id', async (req, res) => {
 
     const post = await models.Post.findByPk(req.params.id);
-    res.render('view-news', {post: post, host: os.hostname()});
+    res.render('view-news',{post: post, host: os.hostname()});
 });
-
 
 app.get('/', async (req, res) => {
 
     const posts = await models.Post.findAll();
-    res.render('index', {posts: posts, host: os.hostname()});
+    res.render('index',{posts: posts, host: os.hostname()});
 });
 
 models.initDatabase();
