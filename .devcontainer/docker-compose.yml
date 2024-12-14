@@ -16,3 +16,12 @@ services:
       - .docker/prometheus/prometheus.yaml:/etc/prometheus/prometheus.yml
     networks:
       - kubenews-net
+
+  grafana:
+    image: grafana/grafana:9.5.15
+    ports:
+      - 3000:3000
+    depends_on:
+      - prometheus
+    networks:
+      - kubenews-net
